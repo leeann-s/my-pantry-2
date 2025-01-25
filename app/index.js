@@ -51,7 +51,7 @@ const HomeScreen = () => {
             { opacity: fadeAnim, transform: [{ translateY: slideAnim }] },
           ]}
         >
-          MyPantry
+          My Pantry
         </Animated.Text>
 
         <Animated.Image
