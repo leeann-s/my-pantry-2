@@ -15,7 +15,7 @@ const HomeScreen = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={[styles.button, styles.placeholderButton]}
-          onPress={() => router.push('/placehodler')}  //placeholder
+          onPress={() => router.push('/pantry')}  //placeholder
         >
          <Image
             source={require('../assets/images/fridge.png')} 
@@ -37,7 +37,7 @@ const HomeScreen = () => {
         {/* Placeholder Button */}
         <TouchableOpacity
           style={[styles.button, styles.placeholderButton]}
-          onPress={() => router.push('/placeholder1')} //placeholder
+          onPress={() => router.push('/search')} //placeholder
         >
           <Text style={styles.buttonText}>Placeholder</Text>
         </TouchableOpacity>
