@@ -5,65 +5,88 @@ import { useRouter } from 'expo-router';
 const pantryIngredients = ['Tomatoes', 'Onions', 'Rice', 'Bell Peppers'];
 
 const recipes = [
-    { id: '1', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions'], image: require('../../assets/images/soup.png') },
-    { id: '2', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions'], image: require('../../assets/images/stirfry.png') },
-    { id: '3', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../../assets/images/chickensalad.png') },
-    { id: '4', name: 'Rice Pilaf', ingredients: ['Rice', 'Onions'], image: require('../../assets/images/pilaf.png') },
-  ];  
+  { id: '1', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions', 'Carrots'], image: require('../assets/images/soup.png') },
+  { id: '2', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions', 'Carrots'], image: require('../assets/images/stirfry.png') },
+  { id: '3', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../assets/images/chickensalad.png') },
+  { id: '4', name: 'Rice Pilaf', ingredients: ['Rice', 'Onions', 'Carrots'], image: require('../assets/images/ricepilaf.png') },
+  { id: '5', name: 'Spanish Omelette', ingredients: ['Eggs', 'Potatoes', 'Onions'], image: require('../assets/images/spanishomlette.jpeg') },
+  { id: '6', name: 'Tofu Stir Fry', ingredients: ['Tofu', 'Bell Peppers', 'Carrots', 'Rice'], image: require('../assets/images/tofustirfry.jpeg') },
+  { id: '7', name: 'Chicken Fajitas', ingredients: ['Chicken', 'Bell Peppers', 'Onions', 'Tortillas'], image: require('../assets/images/fajitas.jpg') },
+  { id: '8', name: 'Pasta Primavera', ingredients: ['Pasta', 'Tomatoes', 'Carrots', 'Bell Peppers'], image: require('../assets/images/pastaprimavera.jpg') },
+  { id: '9', name: 'Egg Fried Rice', ingredients: ['Eggs', 'Rice', 'Onions', 'Carrots'], image: require('../assets/images/friedrice.jpg') },
+  { id: '10', name: 'Grilled Cheese Sandwich', ingredients: ['Bread', 'Cheese'], image: require('../assets/images/grilledcheese.jpg') },
+  { id: '11', name: 'Chicken & Rice Soup', ingredients: ['Chicken', 'Rice', 'Carrots', 'Onions'], image: require('../assets/images/chickenricesoup.jpeg') },
+  { id: '12', name: 'Tofu Tacos', ingredients: ['Tofu', 'Tortillas', 'Bell Peppers', 'Onions'], image: require('../assets/images/tofutacos.jpg') },
+  { id: '13', name: 'Roasted Potatoes & Carrots', ingredients: ['Potatoes', 'Carrots', 'Onions'], image: require('../assets/images/roastedpotatoesandcarrots.jpg') },
+  { id: '14', name: 'Tomato & Egg Scramble', ingredients: ['Tomatoes', 'Eggs', 'Onions'], image: require('../assets/images/tomatoeggscramble.jpg') },
+  { id: '15', name: 'Chicken Pasta', ingredients: ['Chicken', 'Pasta', 'Tomatoes', 'Onions'], image: require('../assets/images/chickenpasta.jpg') },
+];
 
-function SearchScreen() {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredRecipes, setFilteredRecipes] = useState(recipes);
-    const router = useRouter();
+const SearchScreen = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredRecipes, setFilteredRecipes] = useState(recipes);
+  const router = useRouter();
 
-    const handleSearch = (query) => {
-        setSearchQuery(query);
-        if (query) {
-            // Filter recipes by checking if all ingredients in the recipe are in the pantry
-            const filtered = recipes.filter((recipe) => {
-                // Ensure all ingredients in the recipe are in the pantry
-                const hasAllIngredients = recipe.ingredients.every((ingredient) => pantryIngredients.includes(ingredient)
-                );
-                // Only show recipes where the search query matches all ingredients
-                const matchesSearchQuery = recipe.ingredients.some((ingredient) => ingredient.toLowerCase().includes(query.toLowerCase())
-                );
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  
+    if (query.trim() === '') {
+      setFilteredRecipes(recipes);
+      return;
+    }
+  
+    const lowerCaseQuery = query.toLowerCase();
+  
+    const filtered = recipes.filter((recipe) => {
+      // Check if recipe name matches search
+      const matchesRecipeName = recipe.name.toLowerCase().includes(lowerCaseQuery);
+  
+      // Check if any ingredient matches search
+      const matchesIngredient = recipe.ingredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(lowerCaseQuery)
+      );
+  
+      // Check if the recipe has at least one ingredient in the users pantry
+      const hasSomeIngredients = recipe.ingredients.some((ingredient) =>
+        pantryIngredients.includes(ingredient)
+      );
+  
+      // Show the recipe if it matches the name or ingredients, and has at least one pantry item
+      return (matchesRecipeName || matchesIngredient) && hasSomeIngredients;
+    });
+  
+    setFilteredRecipes(filtered);
+  };
 
-                // Show the recipe only if it has all ingredients and matches search query
-                return hasAllIngredients && matchesSearchQuery;
-            });
-            setFilteredRecipes(filtered);
-        } else {
-            setFilteredRecipes(recipes);
-        }
-    };
+  // Handle navigation to the recipe detail screen
+  const handleRecipeSelect = (recipeId) => {
+    router.push(`/recipe/${recipeId}`); // Adjust to your routing scheme
+  };
 
-    // Handle navigation to the recipe detail screen
-    const handleRecipeSelect = (recipeId) => {
-        router.push(`/recipe/${recipeId}`); // Adjust to your routing scheme
-    };
+  return (
+    <View style={styles.container}>
+      {/* Search Input */}
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search for recipes..."
+        value={searchQuery}
+        onChangeText={handleSearch}
+      />
 
-    return (
-        <View style={styles.container}>
-            {/* Search Input */}
-            <TextInput
-                style={styles.searchInput}
-                placeholder="Search for recipes..."
-                value={searchQuery}
-                onChangeText={handleSearch} />
-
-            {/* Search Results */}
-            <FlatList
-                data={filteredRecipes}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.recipeCard} onPress={() => handleRecipeSelect(item.id)}>
-                        <Image source={item.image} style={styles.recipeImage} />
-                        <Text style={styles.recipeTitle}>{item.name}</Text>
-                    </TouchableOpacity>
-                )} />
-        </View>
-    );
-}
+      {/* Search Results */}
+      <FlatList
+        data={filteredRecipes}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.recipeCard} onPress={() => handleRecipeSelect(item.id)}>
+            <Image source={item.image} style={styles.recipeImage} />
+            <Text style={styles.recipeTitle}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
