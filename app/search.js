@@ -5,12 +5,11 @@ import { useRouter } from 'expo-router';
 const pantryIngredients = ['Tomatoes', 'Onions', 'Rice', 'Bell Peppers'];
 
 const recipes = [
-    { id: '1', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions'], image: require('../assets/soup.png') },
-    { id: '2', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions'], image: require('../assets/stirfry.png') },
-    { id: '3', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../assets/chickensalad.png') },
-    { id: '4', name: 'Rice Pilaf', ingredients: ['Rice', 'Onions'], image: require('../assets/ricepilaf.png') },
-  ];
-  
+  { id: '1', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions'], image: require('../assets/images/soup.png') },
+  { id: '2', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions'], image: require('../assets/images/stirfry.png') },
+  { id: '3', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../assets/images/chickensalad.png') },
+  { id: '4', name: 'Rice Pilaf', ingredients: ['Rice', 'Onions'], image: require('../assets/images/ricepilaf.png') },
+];
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
