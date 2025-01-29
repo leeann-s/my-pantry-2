@@ -18,25 +18,33 @@ const SearchScreen = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    if (query) {
-      // Filter recipes by checking if all ingredients in the recipe are in the pantry
-      const filtered = recipes.filter((recipe) => {
-        // Ensure all ingredients in the recipe are in the pantry
-        const hasAllIngredients = recipe.ingredients.every((ingredient) =>
-          pantryIngredients.includes(ingredient)
-        );
-        // Only show recipes where the search query matches all ingredients
-        const matchesSearchQuery = recipe.ingredients.some((ingredient) =>
-          ingredient.toLowerCase().includes(query.toLowerCase())
-        );
-
-        // Show the recipe only if it has all ingredients and matches search query
-        return hasAllIngredients && matchesSearchQuery;
-      });
-      setFilteredRecipes(filtered);
-    } else {
+  
+    if (query.trim() === '') {
       setFilteredRecipes(recipes);
+      return;
     }
+  
+    const lowerCaseQuery = query.toLowerCase();
+  
+    const filtered = recipes.filter((recipe) => {
+      // Check if recipe name matches search
+      const matchesRecipeName = recipe.name.toLowerCase().includes(lowerCaseQuery);
+  
+      // Check if any ingredient matches search
+      const matchesIngredient = recipe.ingredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(lowerCaseQuery)
+      );
+  
+      // Check if the recipe has at least one ingredient in the users pantry
+      const hasSomeIngredients = recipe.ingredients.some((ingredient) =>
+        pantryIngredients.includes(ingredient)
+      );
+  
+      // Show the recipe if it matches the name or ingredients, and has at least one pantry item
+      return (matchesRecipeName || matchesIngredient) && hasSomeIngredients;
+    });
+  
+    setFilteredRecipes(filtered);
   };
 
   // Handle navigation to the recipe detail screen
