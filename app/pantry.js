@@ -30,7 +30,7 @@ export default function PantryScreen () {
         <View style={styles.container}>
             {/* Main containter for entire app. */}
 
-            <Text stle={styles.header}>My Pantry</Text>
+            <Text style={styles.header}>My Pantry</Text>
             {/* Displays title "My Pantry". */}
 
             <View style={styles.searchBar}>
@@ -53,11 +53,13 @@ export default function PantryScreen () {
                 // Supplies pantryItems array to the Flatlist for rendering.
                 numColumns={3}
                 keyExtractor={(item) => item.id.toString()}
+                columnWrapperStyle={styles.row}
                 renderItem={({ item }) => (
                     <View style={styles.gridItem}>
                         {/* Container for each grid item. */}
                         <Image source={item.image} style={styles.image} />
                         {/* Displays name of item below image. */}
+                        <Text style={styles.itemText}>{item.name}</Text>
                     </View>
                 )}
             />
@@ -68,19 +70,19 @@ export default function PantryScreen () {
                 <TouchableOpacity style={styles.navButton}>
                     <Image 
                         source={require('../assets/images/search.png')} 
-                        style={styles.homeIcon}
+                        style={styles.icon}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.navButton}>
                     <Image 
                         source={require('../assets/images/fridge.png')} 
-                        style={styles.homeIcon}
+                        style={styles.icon}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.navButton}>
                     <Image 
                         source={require('../assets/images/home.png')} 
-                        style={styles.homeIcon}
+                        style={styles.icon}
                     />
                 </TouchableOpacity>
             </View>
@@ -91,21 +93,24 @@ export default function PantryScreen () {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        bacgroundColor: '#F7EDEB',
+        backgroundColor: '#F7EDEB',
         padding: 10,
     },
     header: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBotton: 10,
+        marginBottom: 10,
+        color: '#333',
     },
     searchBar: {
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 5,
-        padding: 5,
-        marginBotton: 10,
+        padding: 8,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
     },
     searchInput: {
         flex: 1,
@@ -116,17 +121,26 @@ const styles = StyleSheet.create({
         backgroundColor: '#DCDCDC',
         padding: 10,
         borderRadius: 5,
-        marginBotton: 10,
+        marginBottom: 10,
+    },
+    row: {
+        justifyContent: 'space-around',
+        marginBottom: 10,
     },
     gridItem: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         margin: 5,
     },
     image: {
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         marginBottom: 5,
+    },
+    itemText: {
+        fontSize: 14,
+        textAlign: 'center',
     },
     bottomNav: {
         flexDirection: 'row',
@@ -136,7 +150,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         backgroundColor: '#F7EDEB',
     },
-    homeIcon: {
+    icon: {
         width: 30,
         height: 30,
         resizeMode: 'contain',
