@@ -39,8 +39,14 @@ const recipes = [
 ];
 
 export default function PantryScreen() {
+    const [searchQuery, setSearchQuery] = useState('');
     const [selectedItems, setSelectedItems] = useState([]);
     const [suggestedRecipes, setSuggestedRecipes] = useState([]);
+
+    // Filter pantry items based on search query
+    const filteredPantryItems = pantryItems.filter(item =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     // Toggle pantry item selection
     const handleSelectItem = (itemName) => {
@@ -69,11 +75,16 @@ export default function PantryScreen() {
             <Text style={styles.header}>My Pantry</Text>
 
             {/* Search Bar */}
-            <TextInput placeholder="Search your pantry items" style={styles.searchInput} />
+            <TextInput
+                placeholder="Search your pantry items"
+                style={styles.searchInput}
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+            />
 
             {/* Pantry Item Grid */}
             <FlatList
-                data={pantryItems}
+                data={filteredPantryItems}
                 numColumns={3}
                 keyExtractor={(item) => item.id.toString()}
                 columnWrapperStyle={styles.row}
