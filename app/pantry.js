@@ -115,7 +115,21 @@ export default function PantryScreen() {
                     </View>
                 )}
             />
-        </View>
+             <View style={styles.footer}>
+        <TouchableOpacity style={[styles.button, styles.pantryButton]} onPress={() => router.push('/pantry')}>
+          <Image source={require('../assets/images/fridge.png')} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, styles.homeButton]} onPress={() => router.push('/next')}>
+          <Image source={require('../assets/images/home.png')} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, styles.searchButton]} onPress={() => router.push('/search')}>
+          <Image source={require('../assets/images/search.png')} style={styles.icon} />
+        </TouchableOpacity>
+      </View>
+    </View>        
+
     );
 }
 
@@ -197,4 +211,41 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+      },
+      footer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 20,
+        backgroundColor: '#fff',
+        borderTopWidth: 1,
+        borderTopColor: '#ddd',
+      },
+      button: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        marginHorizontal: 5,
+        borderRadius: 10,
+        backgroundColor: '#ececec',
+      },
+      homeButton: {
+        backgroundColor: '#ddd',
+      },
+      pantryButton: {
+        backgroundColor: '#f9c74f',
+      },
+      searchButton: {
+        backgroundColor: '#ddd',
+      },
+      icon: {
+        width: 30,
+        height: 30,
+        resizeMode: 'contain',
+      },
 });
