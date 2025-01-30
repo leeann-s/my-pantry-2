@@ -105,14 +105,15 @@ const styles = StyleSheet.create({
 
   recipeList: {
     flex: 1,
-    width: '75%',
+    width: '100%',
   },
+
   recipeCard: { 
     flexDirection: 'row', 
     backgroundColor: '#fff', 
-    padding: 50, 
+    padding: 15, 
     borderRadius: 50, 
-    marginBottom: 10,
+    marginBottom: 30,
     alignItems: 'center',
   },
   recipeImage: { 
@@ -125,18 +126,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   recipeTitle: { 
-    fontSize: 20, 
+    fontSize: 30, 
     fontWeight: 'bold' 
   },
   
   recipeReviews: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#555'
 
   },
 
   recipeSpice: { 
-    fontSize: 14, 
+    fontSize: 18, 
     color: '#555' 
   },
 
