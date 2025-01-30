@@ -63,28 +63,37 @@ export default function PantryScreen () {
             />
             {/* Creates scrollable grid view of pantry items. */}
 
-            <View style={styles.bottomNav}>
-                {/* Container for bottom navigation bar. */}
-                <TouchableOpacity style={styles.navButton}>
-                    <Image 
-                        source={require('../assets/images/search.png')} 
-                        style={styles.homeIcon}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navButton}>
-                    <Image 
-                        source={require('../assets/images/fridge.png')} 
-                        style={styles.homeIcon}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navButton}>
-                    <Image 
-                        source={require('../assets/images/home.png')} 
-                        style={styles.homeIcon}
-                    />
-                </TouchableOpacity>
-            </View>
-        </View>
+            <View style={styles.footer}>
+        <TouchableOpacity
+          style={[styles.button, styles.placeholderButton]}
+          onPress={() => router.push('/pantry')}  
+        >
+         <Image
+            source={require('../assets/images/fridge.png')} 
+            style={styles.homeIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.homeButton]}
+          onPress={() => router.push('/next')} 
+        >
+          <Image
+            source={require('../assets/images/home.png')} 
+            style={styles.homeIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.placeholderButton]}
+          onPress={() => router.push('/search')} 
+        >
+ <Image
+            source={require('../assets/images/search.png')} 
+            style={styles.homeIcon}
+          />        </TouchableOpacity>
+      </View>
+    </View>
     );
 }
 

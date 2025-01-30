@@ -15,7 +15,7 @@ const HomeScreen = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={[styles.button, styles.placeholderButton]}
-          onPress={() => router.push('/pantry')}  //placeholder
+          onPress={() => router.push('/pantry')}  
         >
          <Image
             source={require('../assets/images/fridge.png')} 
@@ -23,10 +23,9 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
 
-        {/* Home Button */}
         <TouchableOpacity
           style={[styles.button, styles.homeButton]}
-          onPress={() => router.push('/next')} //placeholder
+          onPress={() => router.push('/next')} 
         >
           <Image
             source={require('../assets/images/home.png')} 
@@ -34,13 +33,14 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
 
-        {/* Placeholder Button */}
         <TouchableOpacity
           style={[styles.button, styles.placeholderButton]}
-          onPress={() => router.push('/search')} //placeholder
+          onPress={() => router.push('/search')} 
         >
-          <Text style={styles.buttonText}>Placeholder</Text>
-        </TouchableOpacity>
+ <Image
+            source={require('../assets/images/search.png')} 
+            style={styles.homeIcon}
+          />        </TouchableOpacity>
       </View>
     </View>
   );
