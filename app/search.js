@@ -5,9 +5,9 @@ import { useRouter } from 'expo-router';
 const pantryIngredients = ['Tomatoes', 'Onions', 'Rice', 'Bell Peppers'];
 
 const recipes = [
-  { id: '1', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions', 'Carrots'], image: require('../assets/images/soup.png') },
-  { id: '2', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions', 'Carrots'], image: require('../assets/images/stirfry.png') },
-  { id: '3', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../assets/images/chickensalad.png') },
+  { id: 'tomatosoup', name: 'Tomato Soup', ingredients: ['Tomatoes', 'Onions', 'Carrots'], image: require('../assets/images/soup.png') },
+  { id: 'veggiestirfry', name: 'Veggie Stir Fry', ingredients: ['Bell Peppers', 'Rice', 'Onions', 'Carrots'], image: require('../assets/images/stirfry.png') },
+  { id: 'chickensalad', name: 'Chicken Salad', ingredients: ['Chicken', 'Lettuce', 'Tomatoes'], image: require('../assets/images/chickensalad.png') },
   { id: '4', name: 'Rice Pilaf', ingredients: ['Rice', 'Onions', 'Carrots'], image: require('../assets/images/ricepilaf.png') },
   { id: '5', name: 'Spanish Omelette', ingredients: ['Eggs', 'Potatoes', 'Onions'], image: require('../assets/images/spanishomlette.jpeg') },
   { id: '6', name: 'Tofu Stir Fry', ingredients: ['Tofu', 'Bell Peppers', 'Carrots', 'Rice'], image: require('../assets/images/tofustirfry.jpeg') },
@@ -60,7 +60,7 @@ const SearchScreen = () => {
 
   // Handle navigation to the recipe detail screen
   const handleRecipeSelect = (recipeId) => {
-    router.push(`/recipe/${recipeId}`); // Adjust to your routing scheme
+    router.push(`/${recipeId}`); // Adjust to your routing scheme
   };
 
   return (
