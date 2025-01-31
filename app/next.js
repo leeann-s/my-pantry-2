@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from 'react
 import { useRouter } from 'expo-router';
 
 const recipes = [
-  { id: '1', title: 'Tomato Soup', image: require('../assets/images/soup.png'), spice: '2/5', 
+  { id: 'tomatosoup', title: 'Tomato Soup', image: require('../assets/images/soup.png'), spice: '2/5', 
     reviews: "Creamiest Tomato Soup Ever! This recipe is so easy and delicious!" },
-  { id: '2', title: 'Veggie Stir Fry', image: require('../assets/images/stirfry.png'), spice: '4/5',
+  { id: 'veggiestirfry', title: 'Veggie Stir Fry', image: require('../assets/images/stirfry.png'), spice: '4/5',
     reviews: 'What a comfort dish and healthy choice! Fridays are Stir Fry days.'
    },
-  { id: '3', title: 'Chicken Salad', image: require('../assets/images/chickensalad.png'), spice: '1/5', 
+  { id: 'chickensalad', title: 'Chicken Salad', image: require('../assets/images/chickensalad.png'), spice: '1/5', 
     reviews: 'Five Star Review, no hesistation. A good recipe for a stay in night.'
   },
 ];
@@ -18,7 +18,9 @@ const HomeScreen = () => {
 
   const renderRecipe = ({ item }) => (
     <View style={styles.recipeCard}>
-      <Image source={item.image} style={styles.recipeImage} />
+      <TouchableOpacity onPress={() => router.push(`/${item.id}`)}>
+        <Image source={item.image} style={styles.recipeImage} />
+      </TouchableOpacity>
       <View style={styles.recipeDetails}>
         <Text style={styles.recipeTitle}>{item.title}</Text>
         <Text style={styles.recipeSpice}>🌶️ Spice: {item.spice}</Text>
@@ -47,7 +49,7 @@ const HomeScreen = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={[styles.button, styles.placeholderButton]}
-          onPress={() => router.push('/pantry')}  
+          onPress = {() => router.push('/pantry')} 
         >
          <Image
             source={require('../assets/images/fridge.png')} 
