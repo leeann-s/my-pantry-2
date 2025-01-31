@@ -39,7 +39,7 @@ const HomeScreen = () => {
   }, []);
 
   const handleTap = () => {
-    router.push('/pantry');
+    router.push('/next');
   };
 
   return (

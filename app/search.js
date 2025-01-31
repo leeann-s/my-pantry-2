@@ -84,14 +84,44 @@ const SearchScreen = () => {
           </TouchableOpacity>
         )}
       />
-    </View>
+       <View style={styles.footer}>
+        <TouchableOpacity
+          style={[styles.button, styles.pantryButton]}
+          onPress = {() => router.push('/pantry')} 
+        >
+         <Image
+            source={require('../assets/images/fridge.png')} 
+            style={styles.homeIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.homeButton]}
+          onPress={() => router.push('/next')} 
+        >
+          <Image
+            source={require('../assets/images/home.png')} 
+            style={styles.homeIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.searchButton]}
+          onPress={() => router.push('/search')} 
+        >
+ <Image
+            source={require('../assets/images/search.png')} 
+            style={styles.homeIcon}
+          />        </TouchableOpacity>
+      </View>
+    </View>    
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f5eae5',
   },
   searchInput: {
@@ -125,6 +155,43 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+  },
+  button: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 5,
+    borderRadius: 10,
+    backgroundColor: '#ececec',
+  },
+  searchButton: {
+    backgroundColor: '#f9c74f',
+  },
+  pantryButton: {
+    backgroundColor: '#ddd',
+  },
+  homeButton: {
+    backgroundColor: '#ddd',
+  },
+  homeIcon: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: 'bold',
+  }
 });
 
 export default SearchScreen;
