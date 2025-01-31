@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import {useRouter} from 'expo-router';
 
 // Pantry items list
 const pantryItems = [
@@ -39,6 +40,7 @@ const recipes = [
 ];
 
 export default function PantryScreen() {
+    const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedItems, setSelectedItems] = useState([]);
     const [suggestedRecipes, setSuggestedRecipes] = useState([]);
@@ -124,7 +126,8 @@ export default function PantryScreen() {
           <Image source={require('../assets/images/home.png')} style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.searchButton]} onPress={() => router.push('/search')}>
+        <TouchableOpacity style={[styles.button, styles.searchButton]} 
+            onPress={() => router.push('/search')}>
           <Image source={require('../assets/images/search.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
