@@ -108,15 +108,19 @@ export default function PantryScreen() {
 
             {/* Suggested Recipes */}
             <FlatList
-                data={suggestedRecipes}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <View style={styles.recipeCard}>
-                        <Image source={item.image} style={styles.recipeImage} />
-                        <Text style={styles.recipeText}>{item.name}</Text>
-                    </View>
-                )}
-            />
+    data={suggestedRecipes}
+    keyExtractor={(item) => item.id}
+    renderItem={({ item }) => (
+        <TouchableOpacity 
+            style={styles.recipeCard} 
+            onPress={() => router.push(`/${item.name.toLowerCase().replace(/\s/g, '')}`)}
+        >
+            <Image source={item.image} style={styles.recipeImage} />
+            <Text style={styles.recipeText}>{item.name}</Text>
+        </TouchableOpacity>
+    )}
+/>
+
              <View style={styles.footer}>
         <TouchableOpacity style={[styles.button, styles.pantryButton]} onPress={() => router.push('/pantry')}>
           <Image source={require('../assets/images/fridge.png')} style={styles.icon} />
